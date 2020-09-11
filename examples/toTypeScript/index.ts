@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import Parser from '../../src';
-import { BaseNode } from '../../src/parse'
+import { BaseNode } from '../../src'
 import * as _ from 'lodash';
 import * as yargs from 'yargs';
 

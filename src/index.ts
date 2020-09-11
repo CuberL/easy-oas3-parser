@@ -1,2 +1,3 @@
-import { parse as Parser } from './parse';
+import { parse as Parser, BaseNode } from './parse';
 export default Parser;
+export {BaseNode}
