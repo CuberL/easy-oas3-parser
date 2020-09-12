@@ -28,7 +28,7 @@
     "build": "tsc",
     "prepare": "yarn run build",
     "test": "yarn jest --coverage",
-    "coveralls": "cat ./coverage/lcov/lcov.info | ./node_modules/.bin/coveralls"
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "name": "easy-json-schema-parser",
   "version": "0.0.3",
