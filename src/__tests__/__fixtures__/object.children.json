@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "children": [
+        {
+            "type": "string",
+            "name": "field_1"
+        },
+        {
+            "type": "null",
+            "name": "field_2"
+        }
+    ]
+}
