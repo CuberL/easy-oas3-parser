@@ -9,5 +9,7 @@ before_install: # if "install" is overridden
   - sudo apt-get install -y nodejs-dev
 cache:
   yarn: true
-install: yarn
+install: 
+  - nvm use 10
+  - yarn
 script: yarn test
