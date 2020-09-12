@@ -15,4 +15,4 @@ install:
   - yarn
 script: yarn test
 after_script:
-  - yarn coverage
+  - yarn coveralls
