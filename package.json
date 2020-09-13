@@ -30,7 +30,7 @@
     "test": "yarn jest --coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
-  "name": "easy-json-schema-parser",
+  "name": "easy-oas3-parser",
   "version": "0.0.5",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
