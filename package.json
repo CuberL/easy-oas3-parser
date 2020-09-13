@@ -31,7 +31,7 @@
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "name": "easy-json-schema-parser",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
