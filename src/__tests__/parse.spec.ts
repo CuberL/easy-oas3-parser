@@ -57,9 +57,9 @@ describe("Parse", () => {
 
   test("Successfully parse -> anyOf", () => {
     const parsed = parse(anyof);
-    expect(parsed.isOneOf()).toBeTruthy();
+    expect(parsed.isAnyOf()).toBeTruthy();
     expect(parsed).toMatchInlineSnapshot(`
-      OneOfNode {
+      AnyOfNode {
         "cases": Array [
           StringNode {
             "enums": Array [],
@@ -69,7 +69,7 @@ describe("Parse", () => {
             "type": "null",
           },
         ],
-        "type": "oneOf",
+        "type": "anyOf",
       }
     `);
   });
