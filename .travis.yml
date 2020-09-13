@@ -23,8 +23,6 @@ jobs:
       script: yarn build
       language: node_js
       node_js: "10"
-      before_deploy:
-        - cd lib
       deploy:
         provider: npm
         email: "$NPM_EMAIL"
