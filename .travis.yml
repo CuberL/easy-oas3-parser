@@ -16,17 +16,11 @@ install:
 script: yarn test
 after_script:
   - yarn coveralls
-jobs:
-  include:
-    - stage: npm release
-      if: tag IS present
-      script: yarn build
-      language: node_js
-      node_js: "10"
-      deploy:
-        provider: npm
-        email: "$NPM_EMAIL"
-        api_key: "$NPM_TOKEN"
-        skip_cleanup: true
-        on:
-          tags: true
+deploy:
+  provider: npm
+  email: "$NPM_EMAIL"
+  api_key: "$NPM_TOKEN"
+  skip_cleanup: true
+  on:
+    tags: true
+      
