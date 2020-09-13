@@ -5,6 +5,7 @@ import { parseOneOf } from './parseOneOf';
 import { parseObject } from './parseObject';
 import { parseArray } from './parseArray';
 import { buildObjectGetFunction } from './buildObjectGetFunction';
+import { parseAnyOf } from './parseAnyOf';
 export class BaseNode {
     readonly type: SupportedDataTypeNames = 'unknown'
     constructor() {
@@ -25,6 +26,10 @@ export class BaseNode {
 
     isOneOf(): this is OneOfNode {
         return this.type === 'oneOf'
+    }
+
+    isAnyOf(): this is AnyOfNode {
+        return this.type === 'anyOf'
     }
 
     isNull(): this is NullNode {
@@ -89,6 +94,15 @@ export class OneOfNode extends BaseNode {
     }
 }
 
+export class AnyOfNode extends BaseNode {
+    type: 'anyOf' = 'anyOf'
+    cases: Array<BaseNode>
+    constructor(cases: Array<BaseNode>) {
+        super()
+        this.cases = cases;
+    }
+}
+
 export class ObjectNode extends BaseNode {
     type: 'object' = 'object';
     properties: {[K: string]: BaseNode}
@@ -109,7 +123,7 @@ export function parse(element: object): BaseNode {
         return parseOneOf(element['oneOf'])
     }
     if (_.get(element, 'anyOf')) {
-        return parseOneOf(element['anyOf'])
+        return parseAnyOf(element['anyOf'])
     }
     if (_.isArray(_.get(element, 'type'))) {
         return parseOneOf(
