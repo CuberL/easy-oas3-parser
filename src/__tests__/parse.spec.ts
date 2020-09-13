@@ -21,16 +21,30 @@ describe("Parse", () => {
         "properties": Object {
           "field_1": StringNode {
             "enums": Array [],
+            "format": null,
+            "maxLength": null,
+            "minLength": null,
+            "pattern": null,
             "type": "string",
           },
           "field_2": StringNode {
             "enums": Array [],
+            "format": null,
+            "maxLength": null,
+            "minLength": null,
+            "pattern": null,
             "type": "string",
           },
           "field_3": NumberNode {
+            "exclusiveMaximum": null,
+            "exclusiveMinimum": null,
+            "maximum": null,
+            "minimum": null,
+            "multipleOf": null,
             "type": "number",
           },
         },
+        "required": Array [],
         "type": "object",
       }
     `);
@@ -44,6 +58,10 @@ describe("Parse", () => {
         "cases": Array [
           StringNode {
             "enums": Array [],
+            "format": null,
+            "maxLength": null,
+            "minLength": null,
+            "pattern": null,
             "type": "string",
           },
           NullNode {
@@ -63,6 +81,10 @@ describe("Parse", () => {
         "cases": Array [
           StringNode {
             "enums": Array [],
+            "format": null,
+            "maxLength": null,
+            "minLength": null,
+            "pattern": null,
             "type": "string",
           },
           NullNode {
@@ -82,6 +104,10 @@ describe("Parse", () => {
         "cases": Array [
           StringNode {
             "enums": Array [],
+            "format": null,
+            "maxLength": null,
+            "minLength": null,
+            "pattern": null,
             "type": "string",
           },
           NullNode {
@@ -102,6 +128,10 @@ describe("Parse", () => {
           "enum_a",
           "enum_b",
         ],
+        "format": null,
+        "maxLength": null,
+        "minLength": null,
+        "pattern": null,
         "type": "string",
       }
     `);
@@ -113,6 +143,10 @@ describe("Parse", () => {
     expect(parsed).toMatchInlineSnapshot(`
       StringNode {
         "enums": Array [],
+        "format": "uuid",
+        "maxLength": 36,
+        "minLength": 1,
+        "pattern": "",
         "type": "string",
       }
     `);
@@ -123,6 +157,11 @@ describe("Parse", () => {
     expect(parsed.isNumber()).toBeTruthy();
     expect(parsed).toMatchInlineSnapshot(`
       NumberNode {
+        "exclusiveMaximum": false,
+        "exclusiveMinimum": true,
+        "maximum": 100,
+        "minimum": 0,
+        "multipleOf": 0,
         "type": "number",
       }
     `);
@@ -147,12 +186,24 @@ describe("Parse", () => {
         "properties": Object {
           "field_1": StringNode {
             "enums": Array [],
+            "format": null,
+            "maxLength": null,
+            "minLength": null,
+            "pattern": null,
             "type": "string",
           },
           "field_2": NumberNode {
+            "exclusiveMaximum": null,
+            "exclusiveMinimum": null,
+            "maximum": null,
+            "minimum": null,
+            "multipleOf": null,
             "type": "number",
           },
         },
+        "required": Array [
+          "field_1",
+        ],
         "type": "object",
       }
     `);
@@ -165,9 +216,14 @@ describe("Parse", () => {
       ArrayNode {
         "items": StringNode {
           "enums": Array [],
+          "format": null,
+          "maxLength": null,
+          "minLength": 3,
+          "pattern": null,
           "type": "string",
         },
         "type": "array",
+        "uniqueItems": true,
       }
     `);
   });

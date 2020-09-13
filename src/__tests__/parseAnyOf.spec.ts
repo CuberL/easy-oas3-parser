@@ -10,6 +10,10 @@ describe("parseAnyOf", () => {
         "cases": Array [
           StringNode {
             "enums": Array [],
+            "format": null,
+            "maxLength": null,
+            "minLength": null,
+            "pattern": null,
             "type": "string",
           },
           NullNode {

@@ -1,6 +1,8 @@
 {
 	"type": "array",
 	"items": {
-      "type": "string"
-    }
+      "type": "string",
+      "minLength": 3
+  },
+  "uniqueItems": true
 }

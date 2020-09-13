@@ -9,9 +9,14 @@ describe("parseArray", () => {
       ArrayNode {
         "items": StringNode {
           "enums": Array [],
+          "format": null,
+          "maxLength": null,
+          "minLength": 3,
+          "pattern": null,
           "type": "string",
         },
         "type": "array",
+        "uniqueItems": true,
       }
     `);
   });

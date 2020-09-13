@@ -12,12 +12,24 @@ describe("parseObject", () => {
         "properties": Object {
           "field_1": StringNode {
             "enums": Array [],
+            "format": null,
+            "maxLength": null,
+            "minLength": null,
+            "pattern": null,
             "type": "string",
           },
           "field_2": NumberNode {
+            "exclusiveMaximum": null,
+            "exclusiveMinimum": null,
+            "maximum": null,
+            "minimum": null,
+            "multipleOf": null,
             "type": "number",
           },
         },
+        "required": Array [
+          "field_1",
+        ],
         "type": "object",
       }
     `);
@@ -31,12 +43,17 @@ describe("parseObject", () => {
         "properties": Object {
           "field_1": StringNode {
             "enums": Array [],
+            "format": null,
+            "maxLength": null,
+            "minLength": null,
+            "pattern": null,
             "type": "string",
           },
           "field_2": NullNode {
             "type": "null",
           },
         },
+        "required": Array [],
         "type": "object",
       }
     `);
@@ -48,6 +65,7 @@ describe("parseObject", () => {
       ObjectNode {
         "get": [Function],
         "properties": Object {},
+        "required": Array [],
         "type": "object",
       }
     `);
