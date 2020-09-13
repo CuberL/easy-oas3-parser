@@ -32,14 +32,21 @@ function parseObjectChildren(children: {type: string, name: string}[]): {[K: str
 
 export function parseObject(element: object): ObjectNode {
     if (_.keys(_.get(element, 'properties')).length === 0 && _.size(_.get(element, 'children')) === 0) {
-        return new ObjectNode({});
+        return new ObjectNode({
+            properties: {}
+        });
     }
     
-    const obj = new ObjectNode(_.merge(
-        {},
-        parseObjectProperties(_.get(element, 'properties')),
-        parseObjectChildren(_.get(element, 'children'))
-    ));
+    const obj = new ObjectNode(
+        {
+            properties: _.merge(
+                {},
+                parseObjectProperties(_.get(element, 'properties')),
+                parseObjectChildren(_.get(element, 'children'))
+            ),
+            required: _.get(element, 'required')
+        }
+    )
 
     return obj
 }

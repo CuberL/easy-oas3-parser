@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { SupportedDataTypeNames, ObjectGetFunction } from './types';
+import { SupportedDataTypeNames, ObjectGetFunction, OAS3NumberSchema, OAS3StringSchema, OAS3ArraySchema, OAS3ObjectSchema } from './types';
 import { parseAllOf } from './parseAllOf';
 import { parseOneOf } from './parseOneOf';
 import { parseObject } from './parseObject';
@@ -45,13 +45,17 @@ export class BaseNode {
     }
 }
 
-export class ArrayNode extends BaseNode {
+export class ArrayNode extends BaseNode implements OAS3ArraySchema {
     items: BaseNode
     type: 'array' = 'array';
+    uniqueItems: boolean;
     public _array: any;
-    constructor(items: BaseNode) {
+    constructor(
+        options: Partial<OAS3ArraySchema> & { items: BaseNode }
+    ) {
         super()
-        this.items = items;
+        this.items = options.items 
+        this.uniqueItems = _.defaultTo(options.uniqueItems, false);
     }
 }
 
@@ -62,12 +66,22 @@ export class BooleanNode extends BaseNode {
     }
 }
 
-export class StringNode extends BaseNode {
+export class StringNode extends BaseNode implements OAS3StringSchema {
     type: 'string' = 'string';
-    enums: string[];
-    constructor(enums: string[] = []) {
+    enums: string[] | null;
+    minLength: number | null;
+    maxLength: number | null;
+    format: string | null;
+    pattern: string | null;
+    constructor(
+        options: Partial<OAS3StringSchema & { enums: string[] }>
+    ) {
         super()
-        this.enums = enums;
+        this.enums = _.defaultTo(options.enums, [])
+        this.minLength = _.defaultTo(options.minLength, null)
+        this.maxLength = _.defaultTo(options.maxLength, null)
+        this.format = _.defaultTo(options.format, null)
+        this.pattern = _.defaultTo(options.pattern, null)
     }
 }
 
@@ -78,39 +92,53 @@ export class NullNode extends BaseNode {
     }
 }
 
-export class NumberNode extends BaseNode {
+export class NumberNode extends BaseNode implements OAS3NumberSchema {
     type: 'number' = 'number';
-    constructor() {
+    exclusiveMinimum: boolean | null
+    exclusiveMaximum: boolean | null
+    minimum: number | null
+    maximum: number | null
+    multipleOf: number | null
+    constructor(options: Partial<OAS3NumberSchema>) {
         super()
+        this.exclusiveMaximum = _.defaultTo(options.exclusiveMaximum, null)
+        this.exclusiveMinimum = _.defaultTo(options.exclusiveMinimum, null)
+        this.maximum = _.defaultTo(options.maximum, null)
+        this.minimum = _.defaultTo(options.minimum, null)
+        this.multipleOf = _.defaultTo(options.multipleOf, null)
     }
 }
 
 export class OneOfNode extends BaseNode {
     type: 'oneOf' = 'oneOf';
     cases: Array<BaseNode>
-    constructor(cases: Array<BaseNode>) {
+    constructor(options: {cases: Array<BaseNode>}) {
         super()
-        this.cases = cases
+        this.cases = options.cases
     }
 }
 
 export class AnyOfNode extends BaseNode {
     type: 'anyOf' = 'anyOf'
     cases: Array<BaseNode>
-    constructor(cases: Array<BaseNode>) {
+    constructor(options: {cases: Array<BaseNode>}) {
         super()
-        this.cases = cases;
+        this.cases = options.cases;
     }
 }
 
-export class ObjectNode extends BaseNode {
+export class ObjectNode extends BaseNode implements OAS3ObjectSchema {
     type: 'object' = 'object';
     properties: {[K: string]: BaseNode}
     get: ObjectGetFunction
-    constructor(properties: {[K: string]: BaseNode}) {
+    required: string[]
+    constructor( 
+        options: Partial<OAS3ObjectSchema> & { properties: {[K: string]: BaseNode} }
+    ) {
         super()
-        this.properties = properties
-        this.get = buildObjectGetFunction(this)
+        this.properties = options.properties;
+        this.required = _.defaultTo(options.required, []);
+        this.get = buildObjectGetFunction(this);
     }
 }
 
@@ -134,12 +162,31 @@ export function parse(element: object): BaseNode {
         )
     }
     if (_.get(element, 'enum')) {
-        return new StringNode(_.get(element, 'enum') as Array<string>)
+        return new StringNode(
+            {
+                enums: _.get(element, 'enum') as Array<string>,
+            }
+        )
     }
     if (element['type'] === 'string') {
-        return new StringNode()
+        return new StringNode(
+            {
+                minLength: _.get(element, 'minLength'),
+                maxLength: _.get(element, 'maxLength'),
+                format: _.get(element, 'format'),
+                pattern: _.get(element, 'pattern')
+            }
+        )
     } else if (element['type'] === 'number' ) {
-        return new NumberNode()
+        return new NumberNode(
+            {
+                exclusiveMinimum: _.get(element, 'exclusiveMinimum'),
+                exclusiveMaximum: _.get(element, 'exclusiveMaximum'),
+                minimum: _.get(element, 'minimum'),
+                maximum: _.get(element, 'maximum'),
+                multipleOf: _.get(element, 'multipleOf')
+            }
+        )
     } else if (element['type'] === 'object') {
         return parseObject(element)
     } else if (element['type'] === 'array') {
