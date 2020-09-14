@@ -15,7 +15,7 @@ yarn add easy-oas3-parser
 ### Usage
 
 ``` typescript
-import * as Parser from 'easy-oas3-parser'
+import Parser from 'easy-oas3-parser'
 import * as fs from 'fs'
 
 const schema = fs.readFileSync('example.json');
