@@ -1,0 +1,46 @@
+{
+	"allOf": [
+      {
+        "type": "object",
+        "properties": {
+          "field_1": {
+            "type": "string"
+          },
+          "field_2": {
+            "type": "number"
+          }
+        }
+      },
+      {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field_4": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field_5": {
+                "type": "number"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "object",
+        "properties": {
+          "field_2": {
+            "type": "string"
+          },
+          "field_3": {
+            "type": "number"
+          }
+        }
+      }
+    ]
+}
