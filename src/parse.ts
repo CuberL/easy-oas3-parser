@@ -187,7 +187,7 @@ export function parse(element: object): BaseNode {
                 multipleOf: _.get(element, 'multipleOf')
             }
         )
-    } else if (element['type'] === 'object') {
+    } else if (element['type'] === 'object' || element['properties']) {
         return parseObject(element)
     } else if (element['type'] === 'array') {
         return parseArray(element)
