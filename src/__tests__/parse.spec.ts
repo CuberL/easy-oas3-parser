@@ -9,6 +9,7 @@ import * as string from "./__fixtures__/string.json";
 import * as object from "./__fixtures__/object.properties.json";
 import * as array from "./__fixtures__/array.json";
 import * as null_type from "./__fixtures__/null.json";
+import * as object_no_type from "./__fixtures__/object.no.type.json";
 import { parse } from "../parse";
 
 describe("Parse", () => {
@@ -179,6 +180,38 @@ describe("Parse", () => {
 
   test("Successfully parse -> object", () => {
     const parsed = parse(object);
+    expect(parsed.isObject()).toBeTruthy();
+    expect(parsed).toMatchInlineSnapshot(`
+      ObjectNode {
+        "get": [Function],
+        "properties": Object {
+          "field_1": StringNode {
+            "enums": Array [],
+            "format": null,
+            "maxLength": null,
+            "minLength": null,
+            "pattern": null,
+            "type": "string",
+          },
+          "field_2": NumberNode {
+            "exclusiveMaximum": null,
+            "exclusiveMinimum": null,
+            "maximum": null,
+            "minimum": null,
+            "multipleOf": null,
+            "type": "number",
+          },
+        },
+        "required": Array [
+          "field_1",
+        ],
+        "type": "object",
+      }
+    `);
+  });
+
+  test("Successfully parse -> object, without type", () => {
+    const parsed = parse(object_no_type);
     expect(parsed.isObject()).toBeTruthy();
     expect(parsed).toMatchInlineSnapshot(`
       ObjectNode {

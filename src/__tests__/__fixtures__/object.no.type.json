@@ -1,0 +1,13 @@
+{
+    "properties": {
+        "field_1": {
+            "type": "string"
+        },
+        "field_2": {
+            "type": "number"
+        }
+    },
+    "required": [
+        "field_1"
+    ]
+}
