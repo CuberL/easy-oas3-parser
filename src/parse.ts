@@ -144,14 +144,34 @@ export class ObjectNode extends BaseNode implements OAS3ObjectSchema {
 
 
 export function parse(element: object): BaseNode {
-    if (_.get(element, 'allOf')) {
-        return parseAllOf(element['allOf'])
-    }
-    if (_.get(element, 'oneOf')) {
-        return parseOneOf(element['oneOf'])
-    }
-    if (_.get(element, 'anyOf')) {
-        return parseAnyOf(element['anyOf'])
+    switch (element['type']) {
+        case 'string': 
+            return new StringNode(
+                {
+                    minLength: _.get(element, 'minLength'),
+                    maxLength: _.get(element, 'maxLength'),
+                    format: _.get(element, 'format'),
+                    pattern: _.get(element, 'pattern')
+                }
+            )
+        case 'number': 
+            return new NumberNode(
+                {
+                    exclusiveMinimum: _.get(element, 'exclusiveMinimum'),
+                    exclusiveMaximum: _.get(element, 'exclusiveMaximum'),
+                    minimum: _.get(element, 'minimum'),
+                    maximum: _.get(element, 'maximum'),
+                    multipleOf: _.get(element, 'multipleOf')
+                }
+            )
+        case 'object':
+            return parseObject(element)
+        case 'array':
+            return parseArray(element)
+        case 'null':
+            return new NullNode()
+        case 'boolean':
+            return new BooleanNode()
     }
     if (_.isArray(_.get(element, 'type'))) {
         return parseOneOf(
@@ -161,6 +181,9 @@ export function parse(element: object): BaseNode {
                     }))
         )
     }
+    if (element['properties']) {
+        return parseObject(element)
+    }
     if (_.get(element, 'enum')) {
         return new StringNode(
             {
@@ -168,34 +191,16 @@ export function parse(element: object): BaseNode {
             }
         )
     }
-    if (element['type'] === 'string') {
-        return new StringNode(
-            {
-                minLength: _.get(element, 'minLength'),
-                maxLength: _.get(element, 'maxLength'),
-                format: _.get(element, 'format'),
-                pattern: _.get(element, 'pattern')
-            }
-        )
-    } else if (element['type'] === 'number' ) {
-        return new NumberNode(
-            {
-                exclusiveMinimum: _.get(element, 'exclusiveMinimum'),
-                exclusiveMaximum: _.get(element, 'exclusiveMaximum'),
-                minimum: _.get(element, 'minimum'),
-                maximum: _.get(element, 'maximum'),
-                multipleOf: _.get(element, 'multipleOf')
-            }
-        )
-    } else if (element['type'] === 'object' || element['properties']) {
-        return parseObject(element)
-    } else if (element['type'] === 'array') {
-        return parseArray(element)
-    } else if (element['type'] === 'null') {
-        return new NullNode()
-    } else if (element['type'] === 'boolean') {
-        return new BooleanNode()
+    if (_.get(element, 'allOf')) {
+        return parseAllOf(element['allOf'])
     }
+    if (_.get(element, 'oneOf')) {
+        return parseOneOf(element['oneOf'])
+    }
+    if (_.get(element, 'anyOf')) {
+        return parseAnyOf(element['anyOf'])
+    }
+    
     return new BaseNode()
 }
 
