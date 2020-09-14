@@ -10,6 +10,7 @@ import * as object from "./__fixtures__/object.properties.json";
 import * as array from "./__fixtures__/array.json";
 import * as null_type from "./__fixtures__/null.json";
 import * as object_no_type from "./__fixtures__/object.no.type.json";
+import * as oneof_array_properties from "./__fixtures__/oneof.array.properties.json";
 import { parse } from "../parse";
 
 describe("Parse", () => {
@@ -110,6 +111,36 @@ describe("Parse", () => {
             "minLength": null,
             "pattern": null,
             "type": "string",
+          },
+          NullNode {
+            "type": "null",
+          },
+        ],
+        "type": "oneOf",
+      }
+    `);
+  });
+
+  test("Successfully parse -> oneOf, array, with properties", () => {
+    const parsed = parse(oneof_array_properties);
+    expect(parsed.isOneOf()).toBeTruthy();
+    expect(parsed).toMatchInlineSnapshot(`
+      OneOfNode {
+        "cases": Array [
+          ObjectNode {
+            "get": [Function],
+            "properties": Object {
+              "field": StringNode {
+                "enums": Array [],
+                "format": null,
+                "maxLength": null,
+                "minLength": null,
+                "pattern": null,
+                "type": "string",
+              },
+            },
+            "required": Array [],
+            "type": "object",
           },
           NullNode {
             "type": "null",
