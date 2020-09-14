@@ -148,6 +148,7 @@ export function parse(element: object): BaseNode {
         case 'string': 
             return new StringNode(
                 {
+                    enums: _.get(element, 'enum'),
                     minLength: _.get(element, 'minLength'),
                     maxLength: _.get(element, 'maxLength'),
                     format: _.get(element, 'format'),
