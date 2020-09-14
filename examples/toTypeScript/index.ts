@@ -12,7 +12,7 @@ function toContextType(element: BaseNode): string {
     } else if (element.isNumber()) {
         return `number`
     } else if (element.isString()) {
-        if (element.enums.length > 0) {
+        if (element.enums && element.enums.length > 0) {
             return element.enums.map(val => JSON.stringify(val)).join('|')
         }
         return `string`
@@ -22,6 +22,8 @@ function toContextType(element: BaseNode): string {
             ([k, v]) => `${k}: ${toContextType(v)}`
         ).join(';') + '}'
     } else if (element.isOneOf()) {
+        return element.cases.map(toContextType).join('|')
+    } else if (element.isAnyOf()) {
         return element.cases.map(toContextType).join('|')
     } else if (element.isNull()) {
         return 'null'
