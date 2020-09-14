@@ -174,7 +174,9 @@ describe("Parse", () => {
     expect(parsed.isString()).toBeTruthy();
     expect(parsed).toMatchInlineSnapshot(`
       StringNode {
-        "enums": Array [],
+        "enums": Array [
+          "a",
+        ],
         "format": "uuid",
         "maxLength": 36,
         "minLength": 1,
