@@ -56,13 +56,28 @@ describe("parseAllOf", () => {
                 "pattern": null,
                 "type": "string",
               },
-              "field_2": StringNode {
-                "enums": Array [],
-                "format": null,
-                "maxLength": null,
-                "minLength": null,
-                "pattern": null,
-                "type": "string",
+              "field_2": ObjectNode {
+                "get": [Function],
+                "properties": Object {
+                  "field_2_1": StringNode {
+                    "enums": Array [],
+                    "format": null,
+                    "maxLength": null,
+                    "minLength": null,
+                    "pattern": null,
+                    "type": "string",
+                  },
+                  "field_2_2": NumberNode {
+                    "exclusiveMaximum": null,
+                    "exclusiveMinimum": null,
+                    "maximum": null,
+                    "minimum": null,
+                    "multipleOf": null,
+                    "type": "number",
+                  },
+                },
+                "required": Array [],
+                "type": "object",
               },
               "field_3": NumberNode {
                 "exclusiveMaximum": null,
@@ -95,13 +110,20 @@ describe("parseAllOf", () => {
                 "pattern": null,
                 "type": "string",
               },
-              "field_2": StringNode {
-                "enums": Array [],
-                "format": null,
-                "maxLength": null,
-                "minLength": null,
-                "pattern": null,
-                "type": "string",
+              "field_2": ObjectNode {
+                "get": [Function],
+                "properties": Object {
+                  "field_2_1": StringNode {
+                    "enums": Array [],
+                    "format": null,
+                    "maxLength": null,
+                    "minLength": null,
+                    "pattern": null,
+                    "type": "string",
+                  },
+                },
+                "required": Array [],
+                "type": "object",
               },
               "field_3": NumberNode {
                 "exclusiveMaximum": null,
@@ -134,13 +156,20 @@ describe("parseAllOf", () => {
                 "pattern": null,
                 "type": "string",
               },
-              "field_2": StringNode {
-                "enums": Array [],
-                "format": null,
-                "maxLength": null,
-                "minLength": null,
-                "pattern": null,
-                "type": "string",
+              "field_2": ObjectNode {
+                "get": [Function],
+                "properties": Object {
+                  "field_2_1": StringNode {
+                    "enums": Array [],
+                    "format": null,
+                    "maxLength": null,
+                    "minLength": null,
+                    "pattern": null,
+                    "type": "string",
+                  },
+                },
+                "required": Array [],
+                "type": "object",
               },
               "field_3": NumberNode {
                 "exclusiveMaximum": null,
