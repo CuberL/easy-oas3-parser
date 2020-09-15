@@ -1,6 +1,21 @@
-import { parseObject } from "./parseObject";
 import * as _ from 'lodash'
 import { ObjectNode, OneOfNode, parse } from "./parse";
+
+function mergeTwoObjectNode(source: ObjectNode, target: ObjectNode): ObjectNode {
+	return new ObjectNode (
+		{
+			properties: {
+				...source.properties,
+				..._.mapValues(target.properties, (value, key) => {
+					if (value.isObject() && source.properties[key]?.isObject()) {
+						return mergeTwoObjectNode(value,source.properties[key] as ObjectNode)
+					}
+					return value;
+				})
+			}
+		}
+	)
+}
 
 export function parseAllOf(elements: Array<object>): ObjectNode | OneOfNode {
 	const allOf = new ObjectNode({
@@ -24,14 +39,7 @@ export function parseAllOf(elements: Array<object>): ObjectNode | OneOfNode {
 				cases: one_of_parsed.cases.map(
 					_case => {
 						if (_case.isObject()) {
-							return new ObjectNode(
-								{
-									properties: {
-										..._case.properties,
-										...allOf.properties
-									}
-								}
-							)
+							return mergeTwoObjectNode(allOf, _case);
 						}
 						return allOf
 					}
