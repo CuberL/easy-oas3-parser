@@ -43,6 +43,63 @@ export class BaseNode {
     isObject(): this is ObjectNode {
         return this.type === 'object'
     }
+
+
+    asArray(): ArrayNode {
+        if (this.isArray()) {
+            return this as ArrayNode
+        }
+        throw new Error(`It's not an array node`)
+    }
+
+    asBoolean(): BooleanNode {
+        if (this.isBoolean()) {
+            return this as BooleanNode
+        }
+        throw new Error(`It's not a boolean node`)
+    }
+
+    asString(): StringNode {
+        if (this.isString()) {
+            return this as StringNode
+        }
+        throw new Error(`It's not a string node`)
+    }
+
+    asOneOf(): OneOfNode {
+        if (this.isOneOf()) {
+            return this as OneOfNode
+        }
+        throw new Error(`It's not an oneOf node`)
+    }
+
+    asAnyOf(): AnyOfNode {
+        if (this.isAnyOf()) {
+            return this as AnyOfNode
+        }
+        throw new Error(`It's not an anyOf node`)
+    }
+
+    asNull(): NullNode {
+        if (this.isNull()) {
+            return this as NullNode
+        }
+        throw new Error(`It's not a null node`)
+    }
+
+    asNumber(): NumberNode {
+        if (this.isNumber()) {
+            return this as NumberNode
+        }
+        throw new Error(`It's not a number node`)
+    }
+    
+    asObject(): ObjectNode {
+        if (this.isObject()) {
+            return this as ObjectNode
+        }
+        throw new Error(`It's not an object node`)
+    }
 }
 
 export class ArrayNode extends BaseNode implements OAS3ArraySchema {
