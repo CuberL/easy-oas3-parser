@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "properties": {
+        "field_1": {
+            "type": "string"
+        },
+        "field_2": {
+            "type": "object",
+            "properties": {
+                "field_2_1": {
+                    "type": "object",
+                    "properties": {
+                        "field_2_1_1": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "required": [
+        "field_1"
+    ]
+}
