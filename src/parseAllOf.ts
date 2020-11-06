@@ -1,35 +1,14 @@
 import * as _ from 'lodash'
 import { ObjectNode, OneOfNode, parse } from "./parse";
+import mergeTwoObjectNode from './mergeTwoObjectNode'
+import { parseObject } from './parseObject';
 
-function mergeTwoObjectNode(source: ObjectNode, target: ObjectNode): ObjectNode {
-	return new ObjectNode (
-		{
-			properties: {
-				...source.properties,
-				..._.mapValues(target.properties, (value, key) => {
-					if (value.isObject() && source.properties[key]?.isObject()) {
-						return mergeTwoObjectNode(value,source.properties[key] as ObjectNode)
-					}
-					return value;
-				})
-			}
-		}
-	)
-}
 
 export function parseAllOf(elements: Array<object>): ObjectNode | OneOfNode {
-	const allOf = new ObjectNode({
-		properties: _.merge(
-			{},
-			...elements.map(sub_element => {
-				const sub_element_parsed = parse(sub_element);
-				if (sub_element_parsed.isObject()) {
-					return sub_element_parsed.properties
-				}
-			})
-		)
-	})
-
+	const allOf = elements.reduce((obj: ObjectNode, now: object) => {
+		return mergeTwoObjectNode(obj, parseObject(now))
+	}, new ObjectNode({properties: {}}))
+	
 	// FIXME: Only support one oneOf for now
 	const one_ofs = elements.filter(element => element['oneOf'])
 	if (one_ofs.length > 0) {
