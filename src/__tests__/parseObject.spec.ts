@@ -31,6 +31,7 @@ describe("parseObject", () => {
         "required": Array [
           "field_1",
         ],
+        "title": null,
         "type": "object",
       }
     `);
@@ -55,6 +56,7 @@ describe("parseObject", () => {
           },
         },
         "required": Array [],
+        "title": null,
         "type": "object",
       }
     `);
@@ -67,6 +69,7 @@ describe("parseObject", () => {
         "get": [Function],
         "properties": Object {},
         "required": Array [],
+        "title": null,
         "type": "object",
       }
     `);
@@ -104,6 +107,7 @@ describe("parseObject", () => {
           },
         },
         "required": Array [],
+        "title": null,
         "type": "object",
       }
     `);

@@ -47,6 +47,7 @@ describe("Parse", () => {
           },
         },
         "required": Array [],
+        "title": null,
         "type": "object",
       }
     `);
@@ -140,6 +141,7 @@ describe("Parse", () => {
               },
             },
             "required": Array [],
+            "title": null,
             "type": "object",
           },
           NullNode {
@@ -238,6 +240,7 @@ describe("Parse", () => {
         "required": Array [
           "field_1",
         ],
+        "title": null,
         "type": "object",
       }
     `);
@@ -270,6 +273,7 @@ describe("Parse", () => {
         "required": Array [
           "field_1",
         ],
+        "title": null,
         "type": "object",
       }
     `);

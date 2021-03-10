@@ -35,14 +35,17 @@ describe("mergeTwoObjectNode", () => {
                   },
                 },
                 "required": Array [],
+                "title": null,
                 "type": "object",
               },
             },
             "required": Array [],
+            "title": null,
             "type": "object",
           },
         },
         "required": Array [],
+        "title": null,
         "type": "object",
       }
     `);

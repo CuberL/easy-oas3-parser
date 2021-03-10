@@ -35,6 +35,7 @@ describe("parseAllOf", () => {
           },
         },
         "required": Array [],
+        "title": null,
         "type": "object",
       }
     `);
@@ -77,6 +78,7 @@ describe("parseAllOf", () => {
                   },
                 },
                 "required": Array [],
+                "title": null,
                 "type": "object",
               },
               "field_3": NumberNode {
@@ -97,6 +99,7 @@ describe("parseAllOf", () => {
               },
             },
             "required": Array [],
+            "title": null,
             "type": "object",
           },
           ObjectNode {
@@ -123,6 +126,7 @@ describe("parseAllOf", () => {
                   },
                 },
                 "required": Array [],
+                "title": null,
                 "type": "object",
               },
               "field_3": NumberNode {
@@ -143,6 +147,7 @@ describe("parseAllOf", () => {
               },
             },
             "required": Array [],
+            "title": null,
             "type": "object",
           },
           ObjectNode {
@@ -169,6 +174,7 @@ describe("parseAllOf", () => {
                   },
                 },
                 "required": Array [],
+                "title": null,
                 "type": "object",
               },
               "field_3": NumberNode {
@@ -181,6 +187,7 @@ describe("parseAllOf", () => {
               },
             },
             "required": Array [],
+            "title": null,
             "type": "object",
           },
         ],
