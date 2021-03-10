@@ -31,7 +31,7 @@
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "name": "easy-oas3-parser",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
