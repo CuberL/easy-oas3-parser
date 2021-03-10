@@ -56,7 +56,7 @@ describe("parseObject", () => {
           },
         },
         "required": Array [],
-        "title": null,
+        "title": "Title",
         "type": "object",
       }
     `);
