@@ -49,7 +49,8 @@ export function parseObject(element: object): ObjectNode {
                 parseObjectProperties(_.get(element, 'properties')),
                 parseObjectChildren(_.get(element, 'children'))
             ),
-            required: _.get(element, 'required')
+            required: _.get(element, 'required'),
+            title: _.get(element, 'title')
         }
     )
 

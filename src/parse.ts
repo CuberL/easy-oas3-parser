@@ -189,6 +189,7 @@ export class ObjectNode extends BaseNode implements OAS3ObjectSchema {
     properties: {[K: string]: BaseNode}
     get: ObjectGetFunction
     required: string[]
+    title: string | null
     constructor( 
         options: Partial<OAS3ObjectSchema> & { properties: {[K: string]: BaseNode} }
     ) {
@@ -196,6 +197,7 @@ export class ObjectNode extends BaseNode implements OAS3ObjectSchema {
         this.properties = options.properties;
         this.required = _.defaultTo(options.required, []);
         this.get = buildObjectGetFunction(this);
+        this.title = null
     }
 }
 
