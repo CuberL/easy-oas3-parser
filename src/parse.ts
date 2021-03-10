@@ -197,7 +197,7 @@ export class ObjectNode extends BaseNode implements OAS3ObjectSchema {
         this.properties = options.properties;
         this.required = _.defaultTo(options.required, []);
         this.get = buildObjectGetFunction(this);
-        this.title = null
+        this.title = _.defaultTo(options.title, null);
     }
 }
 
