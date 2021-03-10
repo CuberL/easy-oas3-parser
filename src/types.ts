@@ -23,6 +23,6 @@ export interface OAS3ArraySchema {
 }
 
 export interface OAS3ObjectSchema {
-    required: string[],
-    title: string
+    required: string[] ,
+    title: string | null
 }
