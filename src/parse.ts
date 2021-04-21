@@ -215,6 +215,7 @@ export function parse(element: object): BaseNode {
                 }
             )
         case 'number': 
+        case 'integer':
             return new NumberNode(
                 {
                     exclusiveMinimum: _.get(element, 'exclusiveMinimum'),
