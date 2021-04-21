@@ -11,6 +11,7 @@ import * as array from "./__fixtures__/array.json";
 import * as null_type from "./__fixtures__/null.json";
 import * as object_no_type from "./__fixtures__/object.no.type.json";
 import * as oneof_array_properties from "./__fixtures__/oneof.array.properties.json";
+import * as integer from "./__fixtures__/integer.json";
 import { parse } from "../parse";
 
 describe("Parse", () => {
@@ -190,6 +191,21 @@ describe("Parse", () => {
 
   test("Successfully parse -> number", () => {
     const parsed = parse(number);
+    expect(parsed.isNumber()).toBeTruthy();
+    expect(parsed).toMatchInlineSnapshot(`
+      NumberNode {
+        "exclusiveMaximum": false,
+        "exclusiveMinimum": true,
+        "maximum": 100,
+        "minimum": 0,
+        "multipleOf": 0,
+        "type": "number",
+      }
+    `);
+  });
+
+  test("Successfully parse -> integer", () => {
+    const parsed = parse(integer);
     expect(parsed.isNumber()).toBeTruthy();
     expect(parsed).toMatchInlineSnapshot(`
       NumberNode {
