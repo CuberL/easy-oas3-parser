@@ -10,26 +10,31 @@ describe("mergeTwoObjectNode", () => {
       .toMatchInlineSnapshot(`
       ObjectNode {
         "get": [Function],
+        "nullable": false,
         "properties": Object {
           "field_1": StringNode {
             "enums": Array [],
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
           "field_2": ObjectNode {
             "get": [Function],
+            "nullable": false,
             "properties": Object {
               "field_2_1": ObjectNode {
                 "get": [Function],
+                "nullable": false,
                 "properties": Object {
                   "field_2_1_1": StringNode {
                     "enums": Array [],
                     "format": null,
                     "maxLength": null,
                     "minLength": null,
+                    "nullable": false,
                     "pattern": null,
                     "type": "string",
                   },

@@ -10,12 +10,14 @@ describe("parseObject", () => {
     expect(object_properties_parsed).toMatchInlineSnapshot(`
       ObjectNode {
         "get": [Function],
+        "nullable": false,
         "properties": Object {
           "field_1": StringNode {
             "enums": Array [],
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
@@ -25,6 +27,7 @@ describe("parseObject", () => {
             "maximum": null,
             "minimum": null,
             "multipleOf": null,
+            "nullable": false,
             "type": "number",
           },
         },
@@ -42,16 +45,19 @@ describe("parseObject", () => {
     expect(object_children_parsed).toMatchInlineSnapshot(`
       ObjectNode {
         "get": [Function],
+        "nullable": false,
         "properties": Object {
           "field_1": StringNode {
             "enums": Array [],
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
           "field_2": NullNode {
+            "nullable": false,
             "type": "null",
           },
         },
@@ -67,6 +73,7 @@ describe("parseObject", () => {
     expect(object_no_properties_parsed).toMatchInlineSnapshot(`
       ObjectNode {
         "get": [Function],
+        "nullable": false,
         "properties": Object {},
         "required": Array [],
         "title": null,
@@ -80,12 +87,14 @@ describe("parseObject", () => {
     expect(object_allof_parsed).toMatchInlineSnapshot(`
       ObjectNode {
         "get": [Function],
+        "nullable": false,
         "properties": Object {
           "field_1": StringNode {
             "enums": Array [],
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
@@ -94,6 +103,7 @@ describe("parseObject", () => {
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
@@ -103,6 +113,7 @@ describe("parseObject", () => {
             "maximum": null,
             "minimum": null,
             "multipleOf": null,
+            "nullable": false,
             "type": "number",
           },
         },

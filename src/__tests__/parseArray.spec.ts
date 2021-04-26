@@ -12,9 +12,11 @@ describe("parseArray", () => {
           "format": null,
           "maxLength": null,
           "minLength": 3,
+          "nullable": false,
           "pattern": null,
           "type": "string",
         },
+        "nullable": false,
         "type": "array",
         "uniqueItems": true,
       }

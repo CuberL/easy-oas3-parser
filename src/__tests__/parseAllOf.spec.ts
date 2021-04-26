@@ -8,12 +8,14 @@ describe("parseAllOf", () => {
     expect(allOf_parsed).toMatchInlineSnapshot(`
       ObjectNode {
         "get": [Function],
+        "nullable": false,
         "properties": Object {
           "field_1": StringNode {
             "enums": Array [],
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
@@ -22,6 +24,7 @@ describe("parseAllOf", () => {
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
@@ -31,6 +34,7 @@ describe("parseAllOf", () => {
             "maximum": null,
             "minimum": null,
             "multipleOf": null,
+            "nullable": false,
             "type": "number",
           },
         },
@@ -48,23 +52,27 @@ describe("parseAllOf", () => {
         "cases": Array [
           ObjectNode {
             "get": [Function],
+            "nullable": false,
             "properties": Object {
               "field_1": StringNode {
                 "enums": Array [],
                 "format": null,
                 "maxLength": null,
                 "minLength": null,
+                "nullable": false,
                 "pattern": null,
                 "type": "string",
               },
               "field_2": ObjectNode {
                 "get": [Function],
+                "nullable": false,
                 "properties": Object {
                   "field_2_1": StringNode {
                     "enums": Array [],
                     "format": null,
                     "maxLength": null,
                     "minLength": null,
+                    "nullable": false,
                     "pattern": null,
                     "type": "string",
                   },
@@ -74,6 +82,7 @@ describe("parseAllOf", () => {
                     "maximum": null,
                     "minimum": null,
                     "multipleOf": null,
+                    "nullable": false,
                     "type": "number",
                   },
                 },
@@ -87,6 +96,7 @@ describe("parseAllOf", () => {
                 "maximum": null,
                 "minimum": null,
                 "multipleOf": null,
+                "nullable": false,
                 "type": "number",
               },
               "field_4": StringNode {
@@ -94,6 +104,7 @@ describe("parseAllOf", () => {
                 "format": null,
                 "maxLength": null,
                 "minLength": null,
+                "nullable": false,
                 "pattern": null,
                 "type": "string",
               },
@@ -104,23 +115,27 @@ describe("parseAllOf", () => {
           },
           ObjectNode {
             "get": [Function],
+            "nullable": false,
             "properties": Object {
               "field_1": StringNode {
                 "enums": Array [],
                 "format": null,
                 "maxLength": null,
                 "minLength": null,
+                "nullable": false,
                 "pattern": null,
                 "type": "string",
               },
               "field_2": ObjectNode {
                 "get": [Function],
+                "nullable": false,
                 "properties": Object {
                   "field_2_1": StringNode {
                     "enums": Array [],
                     "format": null,
                     "maxLength": null,
                     "minLength": null,
+                    "nullable": false,
                     "pattern": null,
                     "type": "string",
                   },
@@ -135,6 +150,7 @@ describe("parseAllOf", () => {
                 "maximum": null,
                 "minimum": null,
                 "multipleOf": null,
+                "nullable": false,
                 "type": "number",
               },
               "field_5": NumberNode {
@@ -143,6 +159,7 @@ describe("parseAllOf", () => {
                 "maximum": null,
                 "minimum": null,
                 "multipleOf": null,
+                "nullable": false,
                 "type": "number",
               },
             },
@@ -152,23 +169,27 @@ describe("parseAllOf", () => {
           },
           ObjectNode {
             "get": [Function],
+            "nullable": false,
             "properties": Object {
               "field_1": StringNode {
                 "enums": Array [],
                 "format": null,
                 "maxLength": null,
                 "minLength": null,
+                "nullable": false,
                 "pattern": null,
                 "type": "string",
               },
               "field_2": ObjectNode {
                 "get": [Function],
+                "nullable": false,
                 "properties": Object {
                   "field_2_1": StringNode {
                     "enums": Array [],
                     "format": null,
                     "maxLength": null,
                     "minLength": null,
+                    "nullable": false,
                     "pattern": null,
                     "type": "string",
                   },
@@ -183,6 +204,7 @@ describe("parseAllOf", () => {
                 "maximum": null,
                 "minimum": null,
                 "multipleOf": null,
+                "nullable": false,
                 "type": "number",
               },
             },
@@ -191,6 +213,7 @@ describe("parseAllOf", () => {
             "type": "object",
           },
         ],
+        "nullable": false,
         "type": "oneOf",
       }
     `);

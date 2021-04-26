@@ -12,13 +12,16 @@ describe("parseOneOf", () => {
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
           NullNode {
+            "nullable": false,
             "type": "null",
           },
         ],
+        "nullable": false,
         "type": "oneOf",
       }
     `);

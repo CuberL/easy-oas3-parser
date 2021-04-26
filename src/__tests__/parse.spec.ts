@@ -6,6 +6,7 @@ import * as string_enum from "./__fixtures__/string.enum.json";
 import * as number from "./__fixtures__/number.json";
 import * as boolean from "./__fixtures__/boolean.json";
 import * as string from "./__fixtures__/string.json";
+import * as nullable_string from "./__fixtures__/string.nullable.json";
 import * as object from "./__fixtures__/object.properties.json";
 import * as array from "./__fixtures__/array.json";
 import * as null_type from "./__fixtures__/null.json";
@@ -21,12 +22,14 @@ describe("Parse", () => {
     expect(parsed).toMatchInlineSnapshot(`
       ObjectNode {
         "get": [Function],
+        "nullable": false,
         "properties": Object {
           "field_1": StringNode {
             "enums": Array [],
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
@@ -35,6 +38,7 @@ describe("Parse", () => {
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
@@ -44,6 +48,7 @@ describe("Parse", () => {
             "maximum": null,
             "minimum": null,
             "multipleOf": null,
+            "nullable": false,
             "type": "number",
           },
         },
@@ -65,13 +70,16 @@ describe("Parse", () => {
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
           NullNode {
+            "nullable": false,
             "type": "null",
           },
         ],
+        "nullable": false,
         "type": "oneOf",
       }
     `);
@@ -88,13 +96,16 @@ describe("Parse", () => {
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
           NullNode {
+            "nullable": false,
             "type": "null",
           },
         ],
+        "nullable": false,
         "type": "anyOf",
       }
     `);
@@ -111,13 +122,16 @@ describe("Parse", () => {
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
           NullNode {
+            "nullable": false,
             "type": "null",
           },
         ],
+        "nullable": false,
         "type": "oneOf",
       }
     `);
@@ -131,12 +145,14 @@ describe("Parse", () => {
         "cases": Array [
           ObjectNode {
             "get": [Function],
+            "nullable": false,
             "properties": Object {
               "field": StringNode {
                 "enums": Array [],
                 "format": null,
                 "maxLength": null,
                 "minLength": null,
+                "nullable": false,
                 "pattern": null,
                 "type": "string",
               },
@@ -146,9 +162,11 @@ describe("Parse", () => {
             "type": "object",
           },
           NullNode {
+            "nullable": false,
             "type": "null",
           },
         ],
+        "nullable": false,
         "type": "oneOf",
       }
     `);
@@ -166,6 +184,7 @@ describe("Parse", () => {
         "format": null,
         "maxLength": null,
         "minLength": null,
+        "nullable": false,
         "pattern": null,
         "type": "string",
       }
@@ -183,6 +202,26 @@ describe("Parse", () => {
         "format": "uuid",
         "maxLength": 36,
         "minLength": 1,
+        "nullable": false,
+        "pattern": "",
+        "type": "string",
+      }
+    `);
+  });
+
+  test("Successfully parse -> string / nullable", () => {
+    const parsed = parse(nullable_string);
+    expect(parsed.isString()).toBeTruthy();
+    expect(parsed.isNullable()).toBeTruthy();
+    expect(parsed).toMatchInlineSnapshot(`
+      StringNode {
+        "enums": Array [
+          "a",
+        ],
+        "format": "uuid",
+        "maxLength": 36,
+        "minLength": 1,
+        "nullable": true,
         "pattern": "",
         "type": "string",
       }
@@ -199,6 +238,7 @@ describe("Parse", () => {
         "maximum": 100,
         "minimum": 0,
         "multipleOf": 0,
+        "nullable": false,
         "type": "number",
       }
     `);
@@ -214,6 +254,7 @@ describe("Parse", () => {
         "maximum": 100,
         "minimum": 0,
         "multipleOf": 0,
+        "nullable": false,
         "type": "number",
       }
     `);
@@ -224,6 +265,7 @@ describe("Parse", () => {
     expect(parsed.isBoolean()).toBeTruthy();
     expect(parsed).toMatchInlineSnapshot(`
       BooleanNode {
+        "nullable": false,
         "type": "boolean",
       }
     `);
@@ -235,12 +277,14 @@ describe("Parse", () => {
     expect(parsed).toMatchInlineSnapshot(`
       ObjectNode {
         "get": [Function],
+        "nullable": false,
         "properties": Object {
           "field_1": StringNode {
             "enums": Array [],
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
@@ -250,6 +294,7 @@ describe("Parse", () => {
             "maximum": null,
             "minimum": null,
             "multipleOf": null,
+            "nullable": false,
             "type": "number",
           },
         },
@@ -268,12 +313,14 @@ describe("Parse", () => {
     expect(parsed).toMatchInlineSnapshot(`
       ObjectNode {
         "get": [Function],
+        "nullable": false,
         "properties": Object {
           "field_1": StringNode {
             "enums": Array [],
             "format": null,
             "maxLength": null,
             "minLength": null,
+            "nullable": false,
             "pattern": null,
             "type": "string",
           },
@@ -283,6 +330,7 @@ describe("Parse", () => {
             "maximum": null,
             "minimum": null,
             "multipleOf": null,
+            "nullable": false,
             "type": "number",
           },
         },
@@ -305,9 +353,11 @@ describe("Parse", () => {
           "format": null,
           "maxLength": null,
           "minLength": 3,
+          "nullable": false,
           "pattern": null,
           "type": "string",
         },
+        "nullable": false,
         "type": "array",
         "uniqueItems": true,
       }
@@ -319,6 +369,7 @@ describe("Parse", () => {
     expect(parsed.isNull()).toBeTruthy();
     expect(parsed).toMatchInlineSnapshot(`
       NullNode {
+        "nullable": false,
         "type": "null",
       }
     `);
@@ -328,6 +379,7 @@ describe("Parse", () => {
     const parsed = parse({});
     expect(parsed).toMatchInlineSnapshot(`
       BaseNode {
+        "nullable": false,
         "type": "unknown",
       }
     `);
