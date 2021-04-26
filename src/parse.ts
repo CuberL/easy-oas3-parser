@@ -8,6 +8,7 @@ import { buildObjectGetFunction } from './buildObjectGetFunction';
 import { parseAnyOf } from './parseAnyOf';
 export class BaseNode {
     readonly type: SupportedDataTypeNames = 'unknown'
+    nullable: boolean = false
     constructor() {
 
     }
@@ -44,6 +45,13 @@ export class BaseNode {
         return this.type === 'object'
     }
 
+    setNullable(nullable: boolean) {
+        this.nullable = nullable
+    }
+
+    isNullable(): boolean {
+        return this.nullable
+    }
 
     asArray(): ArrayNode {
         if (this.isArray()) {
@@ -205,18 +213,20 @@ export class ObjectNode extends BaseNode implements OAS3ObjectSchema {
 export function parse(element: object): BaseNode {
     switch (element['type']) {
         case 'string': 
-            return new StringNode(
+            const node_string = new StringNode(
                 {
                     enums: _.get(element, 'enum'),
                     minLength: _.get(element, 'minLength'),
                     maxLength: _.get(element, 'maxLength'),
                     format: _.get(element, 'format'),
-                    pattern: _.get(element, 'pattern')
+                    pattern: _.get(element, 'pattern'),
                 }
             )
+            node_string.setNullable(element['nullable'] === true)
+            return node_string;
         case 'number': 
         case 'integer':
-            return new NumberNode(
+            const node_number = new NumberNode(
                 {
                     exclusiveMinimum: _.get(element, 'exclusiveMinimum'),
                     exclusiveMaximum: _.get(element, 'exclusiveMaximum'),
@@ -225,14 +235,22 @@ export function parse(element: object): BaseNode {
                     multipleOf: _.get(element, 'multipleOf')
                 }
             )
+            node_number.setNullable(element['nullable'] === true)
+            return node_number;
         case 'object':
-            return parseObject(element)
+            const node_object = parseObject(element)
+            node_object.setNullable(element['nullable'] === true)
+            return node_object
         case 'array':
-            return parseArray(element)
+            const node_array = parseArray(element)
+            node_array.setNullable(element['nullable'] === true)
+            return node_array
         case 'null':
             return new NullNode()
         case 'boolean':
-            return new BooleanNode()
+            const node_boolean = new BooleanNode()
+            node_boolean.setNullable(element['nullable'] === true)
+            return node_boolean
     }
     if (_.isArray(_.get(element, 'type'))) {
         return parseOneOf(
@@ -243,7 +261,9 @@ export function parse(element: object): BaseNode {
         )
     }
     if (element['properties']) {
-        return parseObject(element)
+        const node_object = parseObject(element)
+        node_object.setNullable(element['nullable'] === true)
+        return node_object
     }
     if (_.get(element, 'enum')) {
         return new StringNode(
