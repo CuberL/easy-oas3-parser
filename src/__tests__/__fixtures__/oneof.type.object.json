@@ -1,0 +1,25 @@
+{
+	"oneOf": [
+      {
+        "properties": {
+            "field_1": {
+                "type": "string"
+            },
+            "field_2": {
+                "type": "number"
+            }
+        }
+      },
+      {
+        "properties": {
+            "field_1": {
+                "type": "string"
+            },
+            "field_2": {
+                "type": "number"
+            }
+        }
+      }
+    ],
+    "type": "object"
+}

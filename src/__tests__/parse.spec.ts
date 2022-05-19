@@ -2,6 +2,7 @@ import * as allof from "./__fixtures__/allof.json";
 import * as oneof from "./__fixtures__/oneof.json";
 import * as anyof from "./__fixtures__/anyof.json";
 import * as oneof_array from "./__fixtures__/oneof.array.json";
+import * as oneof_type_is_object from "./__fixtures__/oneof.type.object.json";
 import * as string_enum from "./__fixtures__/string.enum.json";
 import * as number from "./__fixtures__/number.json";
 import * as boolean from "./__fixtures__/boolean.json";
@@ -77,6 +78,73 @@ describe("Parse", () => {
           NullNode {
             "nullable": false,
             "type": "null",
+          },
+        ],
+        "nullable": false,
+        "type": "oneOf",
+      }
+    `);
+  });
+
+  test("Successfully parse -> oneOf -> type is object", () => {
+    const parsed = parse(oneof_type_is_object);
+    expect(parsed.isOneOf()).toBeTruthy();
+    expect(parsed).toMatchInlineSnapshot(`
+      OneOfNode {
+        "cases": Array [
+          ObjectNode {
+            "get": [Function],
+            "nullable": false,
+            "properties": Object {
+              "field_1": StringNode {
+                "enums": Array [],
+                "format": null,
+                "maxLength": null,
+                "minLength": null,
+                "nullable": false,
+                "pattern": null,
+                "type": "string",
+              },
+              "field_2": NumberNode {
+                "exclusiveMaximum": null,
+                "exclusiveMinimum": null,
+                "maximum": null,
+                "minimum": null,
+                "multipleOf": null,
+                "nullable": false,
+                "type": "number",
+              },
+            },
+            "required": Array [],
+            "title": null,
+            "type": "object",
+          },
+          ObjectNode {
+            "get": [Function],
+            "nullable": false,
+            "properties": Object {
+              "field_1": StringNode {
+                "enums": Array [],
+                "format": null,
+                "maxLength": null,
+                "minLength": null,
+                "nullable": false,
+                "pattern": null,
+                "type": "string",
+              },
+              "field_2": NumberNode {
+                "exclusiveMaximum": null,
+                "exclusiveMinimum": null,
+                "maximum": null,
+                "minimum": null,
+                "multipleOf": null,
+                "nullable": false,
+                "type": "number",
+              },
+            },
+            "required": Array [],
+            "title": null,
+            "type": "object",
           },
         ],
         "nullable": false,
