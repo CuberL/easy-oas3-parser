@@ -211,6 +211,15 @@ export class ObjectNode extends BaseNode implements OAS3ObjectSchema {
 
 
 export function parse(element: object): BaseNode {
+    if (_.get(element, 'allOf')) {
+        return parseAllOf(element['allOf'])
+    }
+    if (_.get(element, 'oneOf')) {
+        return parseOneOf(element['oneOf'])
+    }
+    if (_.get(element, 'anyOf')) {
+        return parseAnyOf(element['anyOf'])
+    }
     switch (element['type']) {
         case 'string': 
             const node_string = new StringNode(
@@ -271,15 +280,6 @@ export function parse(element: object): BaseNode {
                 enums: _.get(element, 'enum') as Array<string>,
             }
         )
-    }
-    if (_.get(element, 'allOf')) {
-        return parseAllOf(element['allOf'])
-    }
-    if (_.get(element, 'oneOf')) {
-        return parseOneOf(element['oneOf'])
-    }
-    if (_.get(element, 'anyOf')) {
-        return parseAnyOf(element['anyOf'])
     }
     
     return new BaseNode()
